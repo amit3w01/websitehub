@@ -1,0 +1,312 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Theater</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      background-color: #0f0f0f;
+      color: #f8f8f8;
+    }
+    
+    .theater-bg {
+      background: radial-gradient(circle at 20% 30%, rgba(30, 30, 30, 0.9) 0%, rgba(15, 15, 15, 1) 70%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .theater-bg::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.03) 0%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0.03) 100%
+      );
+      pointer-events: none;
+    }
+    
+    .curtain-effect {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(180, 0, 0, 0.2) 0%,
+        rgba(0, 0, 0, 0) 10%,
+        rgba(0, 0, 0, 0) 90%,
+        rgba(180, 0, 0, 0.2) 100%
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    .video-card {
+      transition: all 0.3s ease;
+      background: rgba(30, 30, 30, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(5px);
+    }
+    
+    .video-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .spotlight {
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(220, 38, 38, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .animate-fadeIn {
+      animation: fadeIn 0.6s ease-out forwards;
+    }
+    
+    .delay-100 {
+      animation-delay: 0.1s;
+    }
+    
+    .delay-200 {
+      animation-delay: 0.2s;
+    }
+    
+    .delay-300 {
+      animation-delay: 0.3s;
+    }
+    
+    .classic-badge {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
+      color: #d4af37;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    
+    .site-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #dc2626;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col theater-bg">
+  <div class="curtain-effect"></div>
+  
+  <div id="main-content" class="flex-grow flex flex-col relative z-10">
+    <header class="py-6 border-b border-gray-800">
+      <div class="container mx-auto px-4 flex items-center justify-between">
+        <div class="flex items-center">
+          <i class="fas fa-theater-masks text-red-600 text-2xl mr-3"></i>
+          <h1 class="header-title text-2xl font-bold text-white">Cinephile Theater</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+          <button class="text-gray-400 hover:text-white transition">
+            <i class="fas fa-search"></i>
+          </button>
+          <button class="text-gray-400 hover:text-white transition">
+            <i class="fas fa-cog"></i>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="flex-grow container mx-auto px-4 py-8">
+      <div class="text-center mb-12 animate-fadeIn delay-100">
+        <h2 class="text-4xl font-bold text-white mb-4">Favorite Sites</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto">
+          Quick access to your preferred streaming platforms for endless entertainment.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- FMovies Card -->
+        <div class="video-card rounded-xl overflow-hidden animate-fadeIn delay-200">
+          <div class="aspect-w-16 aspect-h-9 relative bg-gray-900 flex items-center justify-center">
+            <div class="text-center p-6">
+              <i class="fas fa-film site-icon"></i>
+              <h3 class="text-xl font-semibold text-white mb-2">FMovies</h3>
+              <p class="text-gray-400 text-sm mb-4">Stream thousands of movies and TV shows for free</p>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
+              <a href="https://ww4.fmovies.co" target="_blank" class="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium transition text-center">
+                <i class="fas fa-external-link-alt mr-2"></i> Visit Site
+              </a>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-semibold text-white">FMovies</h3>
+              <span class="bg-red-600/20 text-red-400 text-xs px-2 py-1 rounded">Popular</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-4">Extensive library of movies and TV series with multiple streaming servers.</p>
+            <div class="flex items-center text-gray-500 text-sm">
+              <span class="mr-3"><i class="fas fa-globe mr-1"></i> ww4.fmovies.co</span>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="bg-gray-800/60 text-gray-300 text-xs px-2 py-1 rounded">Movies</span>
+              <span class="bg-gray-800/60 text-gray-300 text-xs px-2 py-1 rounded">TV Shows</span>
+              <span class="bg-gray-800/60 text-gray-300 text-xs px-2 py-1 rounded">Free</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MyFlixer Card -->
+        <div class="video-card rounded-xl overflow-hidden animate-fadeIn delay-200">
+          <div class="aspect-w-16 aspect-h-9 relative bg-gray-900 flex items-center justify-center">
+            <div class="text-center p-6">
+              <i class="fas fa-play-circle site-icon"></i>
+              <h3 class="text-xl font-semibold text-white mb-2">MyFlixer</h3>
+              <p class="text-gray-400 text-sm mb-4">HD streaming with no registration required</p>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
+              <a href="https://myflixerz.to" target="_blank" class="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium transition text-center">
+                <i class="fas fa-external-link-alt mr-2"></i> Visit Site
+              </a>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-semibold text-white">MyFlixer</h3>
+              <span class="bg-blue-600/20 text-blue-400 text-xs px-2 py-1 rounded">HD Quality</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-4">Stream the latest movies and TV series in high definition without creating an account.</p>
+            <div class="flex items-center text-gray-500 text-sm">
+              <span class="mr-3"><i class="fas fa-globe mr-1"></i> myflixerz.to</span>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="bg-gray-800/60 text-gray-300 text-xs px-2 py-1 rounded">HD Streaming</span>
+              <span class="bg-gray-800/60 text-gray-300 text-xs px-2 py-1 rounded">No Registration</span>
+              <span class="bg-gray-800/60 text-gray-300 text-xs px-2 py-1 rounded">Latest Releases</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SFlix Card -->
+        <div class="video-card rounded-xl overflow-hidden animate-fadeIn delay-300">
+          <div class="aspect-w-16 aspect-h-9 relative bg-gray-900 flex items-center justify-center">
+            <div class="text-center p-6">
+              <i class="fas fa-video site-icon"></i>
+              <h3 class="text-xl font-semibold text-white mb-2">SFlix</h3>
+              <p class="text-gray-400 text-sm mb-4">Clean interface with fast streaming servers</p>
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity flex items-end p-4">
+              <a href="https://sflix.ps" target="_blank" class="w-full bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-full text-sm font-medium transition text-center">
+                <i class="fas fa-external-link-alt mr-2"></i> Visit Site
+              </a>
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="text-xl font-semibold text-white">SFlix</h3>
+              <span class="bg-green-600/20 text-green-400 text-xs px-2 py-1 rounded">Fast</span>
+            </div>
+            <p class="text-gray-400 text-sm mb-4">User-friendly platform with minimal ads and reliable streaming experience.</p>
+            <div class="flex items-center text-gray-500 text-sm">
+              <span class="mr-3"><i class="fas fa-globe mr-1"></i> sflix.ps</span>
+            </div>
+            <div class="mt-3 flex flex-wrap gap-2">
+              <span class="bg-gray-800/60 text-gray-300 text-xs px-2 py-1 rounded">Clean UI</span>
+              <span class="bg-gray-800/60 text-gray-300 text-xs px-2 py-1 rounded">Fast Loading</span>
+              <span class="bg-gray-800/60 text-gray-300 text-xs px-2 py-1 rounded">Minimal Ads</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="mt-16 animate-fadeIn delay-300">
+        <h3 class="text-2xl font-bold text-white mb-6 text-center">Collections</h3>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="bg-gray-800/50 hover:bg-gray-800/70 rounded-lg p-4 text-center cursor-pointer transition border border-gray-800 hover:border-gray-700">
+            <i class="fas fa-award text-red-500 text-2xl mb-3"></i>
+            <h4 class="font-medium text-white">Award Winners</h4>
+          </div>
+          <div class="bg-gray-800/50 hover:bg-gray-800/70 rounded-lg p-4 text-center cursor-pointer transition border border-gray-800 hover:border-gray-700">
+            <i class="fas fa-globe-americas text-blue-500 text-2xl mb-3"></i>
+            <h4 class="font-medium text-white">International</h4>
+          </div>
+          <div class="bg-gray-800/50 hover:bg-gray-800/70 rounded-lg p-4 text-center cursor-pointer transition border border-gray-800 hover:border-gray-700">
+            <i class="fas fa-film text-yellow-500 text-2xl mb-3"></i>
+            <h4 class="font-medium text-white">Classics</h4>
+          </div>
+          <div class="bg-gray-800/50 hover:bg-gray-800/70 rounded-lg p-4 text-center cursor-pointer transition border border-gray-800 hover:border-gray-700">
+            <i class="fas fa-magic text-purple-500 text-2xl mb-3"></i>
+            <h4 class="font-medium text-white">Fantasy</h4>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="border-t border-gray-800 py-8 mt-12">
+      <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="flex items-center mb-4 md:mb-0">
+            <i class="fas fa-theater-masks text-red-600 text-2xl mr-3"></i>
+            <span class="text-xl font-bold text-white">Cinephile Theater</span>
+          </div>
+          <div class="flex space-x-6">
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="mt-8 text-center text-gray-500 text-sm">
+          &copy; 2024 Cinephile Theater. All rights reserved. 
+          <span class="block mt-2">Created with <i class="fas fa-heart text-red-500 mx-1"></i> for film enthusiasts</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Create spotlight effect
+    document.addEventListener('mousemove', (e) => {
+      const spotlight = document.querySelector('.spotlight');
+      if (!spotlight) {
+        const newSpotlight = document.createElement('div');
+        newSpotlight.className = 'spotlight';
+        document.body.appendChild(newSpotlight);
+      }
+      
+      const x = e.clientX;
+      const y = e.clientY;
+      
+      document.querySelector('.spotlight').style.left = `${x - 150}px`;
+      document.querySelector('.spotlight').style.top = `${y - 150}px`;
+    });
+  </script>
+</body>
+</html>
